@@ -82,16 +82,18 @@ const AboutSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div ref={textRef} className="space-y-6">
-            <h3 className="text-2xl font-bold text-white">Deniz aka Danny - Web Developer</h3>
+            <h3 className="text-2xl font-bold text-white">Deniz - Fullstack Developer</h3>
             <p className="text-gray-300">
-              I'm a passionate developer with expertise in creating immersive web experiences using 
-              cutting-edge technologies like Three.js, React and Next.js. My journey in web development
-              began 5 years ago, and I've been exploring the digital universe ever since.
+              I'm a fullstack developer with expertise in JavaScript, TypeScript, Python, and SQL. I create
+              web applications with modern frameworks like React and Next.js while handling
+              backend systems and databases.
             </p>
             <p className="text-gray-300">
-              I specialize in building interactive 3D websites and 
-              performance-optimized applications that provide users with memorable experiences.
-              My approach combines technical precision with creative vision.
+              I also have strong system administration skills across Linux and Windows environments,
+              managing servers, configuring networks, and implementing domain configurations.
+            </p>
+            <p className="text-gray-300">
+              I continuously set goals to broaden my expertise by learning new languages and technologies across diverse fields.
             </p>
             <div className="flex gap-4">
               <a 
@@ -113,8 +115,15 @@ const AboutSection = () => {
             {/* Stylized image placeholder - in a real project you would use an actual image */}
             <div className="aspect-square max-w-md mx-auto relative">
               <div className="absolute inset-0 bg-gradient-to-br from-space-accent/30 to-space-highlight/30 rounded-full animation-pulse"></div>
-              <div className="absolute inset-4 bg-space-dark rounded-full flex items-center justify-center">
-                <div className="text-8xl">👨‍💻</div>
+              <div className="absolute inset-4 bg-space-dark rounded-full overflow-hidden">
+                <Image 
+                  src="/me/IMG_2075.jpg" 
+                  alt="Deniz - Web Developer" 
+                  fill 
+                  style={{ objectFit: 'cover' }}
+                  className="rounded-full"
+                  priority
+                />
               </div>
               <div className="absolute -top-4 -right-4 w-8 h-8 bg-space-accent rounded-full animation-pulse"></div>
               <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-space-highlight rounded-full animation-pulse" style={{ animationDelay: '1s' }}></div>
