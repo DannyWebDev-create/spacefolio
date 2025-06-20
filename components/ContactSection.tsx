@@ -102,7 +102,10 @@ const ContactSection = () => {
       name: formData.from_name,
       reply_to: formData.reply_to, 
       email: formData.reply_to,
-      message: formData.message
+      message: formData.message,
+      request: formData.message, // This is for displaying the message in the auto-reply
+      content: formData.message, // Another possible variable name
+      user_message: formData.message // Another possible variable name
     };
     
     // First, send the notification to you

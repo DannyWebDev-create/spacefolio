@@ -15,6 +15,7 @@ interface Project {
   description: string;
   tags: string[];
   image: string;
+  video: string;
   demoUrl: string;
   repoUrl: string;
 }
@@ -24,36 +25,40 @@ const projects = [
   {
     id: 1,
     title: 'Ticket System',
-    description: 'This is a simple ticket system built for testing and demonstration purposes.Users can create, track, and manage support tickets in a clean, user-friendly interface. Built with modern web technologies — perfect for showcasing full-stack skills.',
+    description: 'This is a simple ticket system built for testing and demonstration purposes. Users can create, track, and manage support tickets in a clean, user-friendly interface. Built with modern web technologies — perfect for showcasing full-stack skills.',
     tags: ['Next.js', 'JavaScript', 'React', 'Tailwind CSS'],
-    image: '/cosmic-explorer.jpg', // Placeholder for a space-themed project image
+    image: '', // Fallback image if video doesn't load
+    video: '/videos/ticket-system.mp4', // Path to your project video
     demoUrl: 'https://ticket-system-project.vercel.app/',
     repoUrl: 'https://github.com/DannyWebDev-create/ticket-system-project',
   },
   {
     id: 2,
     title: 'ZWST',
-    description: 'MERN stack app for managing second home tax. Handles large tax datasets with filtering, editing, and dynamic forms — built for performance and clarity. I’m not allowed to share this one, so enjoy the mystery!',
-    tags: ['Three.js', 'React', 'Shaders', 'Next.js'],
-    image: '/alien-artifacts.jpg', // Placeholder for a space-themed project image
-    demoUrl: '#',
-    repoUrl: '#',
+    description: "My biggest project yet. MERN stack app for managing second home tax. Handles large tax datasets with filtering, editing, and dynamic forms — built for performance and clarity. I'm not allowed to share this one, so enjoy the mystery!",
+    tags: ['Node.js/Express.js', 'React', 'MySQL', 'JWT', 'nginx/SSL'],
+    image: '', // Fallback image if video doesn't load
+    video: '/videos/zwst.mp4', // Path to your project video
+    demoUrl: 'javascript:void(0)',
+    repoUrl: 'javascript:void(0)',
   },
   {
     id: 3,
     title: 'Spacefolio',
     description: "You're already here. Welcome aboard the Spacefolio — a dashboard so advanced, it monitors itself in real time.",
     tags: ['Next.js', 'Three.js', 'TypeScript', 'Tailwind CSS'],
-    image: '/space-dashboard.jpg', // Placeholder for a space-themed project image
-    demoUrl: '#',
-    repoUrl: '#',
+    image: '/videos/spacefolio.gif', // Fallback image if video doesn't load
+    video: '/videos/spacefolio.mp4', // Path to your project video
+    demoUrl: 'https://spacefolio-three.vercel.app/',
+    repoUrl: 'https://github.com/DannyWebDev-create/spacefolio',
   },
   {
     id: 4,
     title: 'Doner Project',
     description: 'A small, fun project built in 2 days — a clicker game inspired by Cookie Clicker.',    
     tags: ['Next.js', 'TypeScript'],
-    image: '/galaxy-generator.jpg', // Placeholder for a space-themed project image
+    image: '', // Fallback image if video doesn't load
+    video: '/videos/doner-project.mp4', // Path to your project video
     demoUrl: 'https://doner-project.vercel.app/',
     repoUrl: 'https://github.com/DannyWebDev-create/doner-project',
   },
@@ -62,6 +67,7 @@ const projects = [
 // Project card component
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
   const cardRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   useEffect(() => {
     gsap.fromTo(
@@ -79,37 +85,103 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       }
     );
   }, [index]);
+  
+  // Handlers for video pause/play on hover
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+  
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
 
   return (
     <div 
       ref={cardRef}
       className="group glass rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-space-accent/20 hover:scale-[1.02]"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="h-56 relative overflow-hidden bg-space-light">
-        {/* Image would be replaced with an actual project image */}
-        <div className="absolute inset-0 bg-gradient-to-br from-space-accent/30 to-space-highlight/30 group-hover:opacity-70 transition-opacity"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-7xl">{index === 0 ? '🪐' : index === 1 ? '👽' : index === 2 ? '🚀' : '✨'}</span>
-        </div>
+        {/* Video Background */}
+        {project.video && (
+          <div className="absolute inset-0 w-full h-full">
+            <div className="relative w-full h-full overflow-hidden">
+              <video 
+                ref={videoRef}
+                className="w-full h-full object-cover"
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                {...{
+                  'webkit-playsinline': 'true',
+                  'x5-playsinline': 'true'
+                }}
+                poster={project.image}
+                controls={false}
+                disablePictureInPicture
+                disableRemotePlayback
+                controlsList="nodownload nofullscreen noremoteplayback"
+                onContextMenu={(e) => e.preventDefault()}
+                onClick={(e) => e.preventDefault()}
+                style={{
+                  objectFit: 'cover',
+                  pointerEvents: 'none' // Disable all mouse interactions with the video
+                }}
+              >
+                <source src={project.video} type="video/mp4" />
+                {/* Your browser does not support the video tag. */}
+              </video>
+              
+              {/* Complete transparent overlay that blocks all controls while allowing group hover effects to pass through */}
+              <div 
+                className="absolute inset-0 z-10 group-hover:z-0" 
+                style={{ background: 'transparent', pointerEvents: 'auto' }}
+                onClick={(e) => e.preventDefault()}
+              ></div>
+              
+              {/* Gradient overlay for better text visibility */}
+              <div className="absolute inset-0 bg-gradient-to-br from-space-accent/30 to-space-highlight/30 group-hover:opacity-70 transition-opacity"></div>
+            </div>
+          </div>
+        )}
         
         {/* Overlay with links */}
         <div className="absolute inset-0 bg-space-dark/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-          <a 
-            href={project.demoUrl} 
-            className="px-4 py-2 bg-space-accent text-white rounded-full hover:bg-space-highlight transition-colors"
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            Live Demo
-          </a>
-          <a 
-            href={project.repoUrl} 
-            className="px-4 py-2 border border-white text-white rounded-full hover:bg-white/20 transition-colors"
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
+          {project.demoUrl === 'javascript:void(0)' ? (
+            <div className="px-4 py-2 bg-space-accent text-white rounded-full opacity-70">
+              [REDACTED]
+            </div>
+          ) : (
+            <a 
+              href={project.demoUrl} 
+              className="px-4 py-2 bg-space-accent text-white rounded-full hover:bg-space-highlight transition-colors"
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Live Demo
+            </a>
+          )}
+          
+          {project.repoUrl === 'javascript:void(0)' ? (
+            <div className="px-4 py-2 border border-white text-white rounded-full opacity-70">
+              [REDACTED]
+            </div>
+          ) : (
+            <a 
+              href={project.repoUrl} 
+              className="px-4 py-2 border border-white text-white rounded-full hover:bg-white/20 transition-colors"
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          )}
         </div>
       </div>
       
