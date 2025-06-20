@@ -36,7 +36,7 @@ const projects = [
     id: 2,
     title: 'ZWST',
     description: "My biggest project yet. MERN stack app for managing second home tax. Handles large tax datasets with filtering, editing, and dynamic forms — built for performance and clarity. I'm not allowed to share this one, so enjoy the mystery!",
-    tags: ['Node.js/Express.js', 'React', 'MySQL', 'JWT', 'nginx/SSL'],
+    tags: ['Node.js/Express.js', 'React', 'MySQL', 'JWT', 'NGINX', 'SSL'],
     image: '', // Fallback image if video doesn't load
     video: '/videos/zwst.mp4', // Path to your project video
     demoUrl: 'javascript:void(0)',
