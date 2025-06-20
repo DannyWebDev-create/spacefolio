@@ -25,7 +25,7 @@ const projects = [
   {
     id: 1,
     title: 'Ticket System',
-    description: 'This is a simple ticket system built for testing and demonstration purposes. Users can create, track, and manage support tickets in a clean, user-friendly interface. Built with modern web technologies — perfect for showcasing full-stack skills.',
+    description: 'This is a simple ticket system built for testing and demonstration purposes. Users can create, track, and manage support tickets in a clean, user-friendly interface. Built with modern web technologies — perfect for showcasing full-stack skills. The backend has not yet been implemented on Vercel',
     tags: ['Next.js', 'JavaScript', 'React', 'Tailwind CSS'],
     image: '', // Fallback image if video doesn't load
     video: '/videos/ticket-system.mp4', // Path to your project video
