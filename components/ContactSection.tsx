@@ -96,18 +96,6 @@ const ContactSection = () => {
       to_email: 'codedbydanny@gmail.com' // Your email to receive the contact notification
     };
     
-    // Template parameters for auto-reply to the visitor
-    const visitorAutoReplyParams = {
-      from_name: formData.from_name,
-      name: formData.from_name,
-      reply_to: formData.reply_to, 
-      email: formData.reply_to,
-      message: formData.message,
-      request: formData.message, // This is for displaying the message in the auto-reply
-      content: formData.message, // Another possible variable name
-      user_message: formData.message // Another possible variable name
-    };
-    
     // First, send the notification to you
     emailjs.send(
       'service_pzshulq',
@@ -117,17 +105,6 @@ const ContactSection = () => {
     )
     .then((result) => {
       console.log('Owner notification sent successfully:', result.text);
-      
-      // Then, send the auto-reply to the visitor
-      return emailjs.send(
-        'service_pzshulq',
-        'template_ueu8tjh', // Auto-Reply template (for the visitor)
-        visitorAutoReplyParams,
-        'vC1tIXjQaAJyZceO6'
-      );
-    })
-    .then((result) => {
-      console.log('Auto-reply sent successfully:', result.text);
       setFormStatus({
         submitted: true,
         error: false,
