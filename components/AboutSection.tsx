@@ -102,12 +102,6 @@ const AboutSection = () => {
               >
                 Contact Me
               </a>
-              <a 
-                href="#" 
-                className="px-6 py-2 border border-space-accent bg-transparent hover:bg-space-accent/20 text-white rounded-full transition-colors"
-              >
-                My Resume
-              </a>
             </div>
           </div>
           

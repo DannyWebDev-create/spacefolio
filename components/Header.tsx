@@ -46,12 +46,6 @@ const Header = () => {
           <Link href="#contact" className="text-white hover:text-space-highlight transition-colors">
             Contact
           </Link>
-          <a 
-            href="#" 
-            className="px-5 py-2 border border-space-accent bg-transparent hover:bg-space-accent/20 text-white rounded-full transition-all duration-300"
-          >
-            Resume
-          </a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -107,12 +101,6 @@ const Header = () => {
             >
               Contact
             </Link>
-            <a 
-              href="#" 
-              className="px-5 py-2 border border-space-accent bg-transparent hover:bg-space-accent/20 text-white rounded-full transition-all duration-300 w-fit"
-            >
-              Resume
-            </a>
           </nav>
         </div>
       )}
